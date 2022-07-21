@@ -63,7 +63,7 @@
 			})
 			let res = await responce.json();
 			if (res.result == "entered") {
-				location.href = "users";
+				location.href = "users/profile";
 			} else if (res.result == "wrpass") {
 				ps1.innerHTML =`Неправильный пароль!`;
 			} else {
