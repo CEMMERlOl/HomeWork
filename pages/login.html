@@ -35,11 +35,11 @@
 						<form class="row login_form" onsubmit="sendForm(this); return false;" >
 							<div class="col-md-12 form-group">
 								<input type="email" class="form-control" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
-								<p id="em1" style="color: red;" hidden>Такого пользователя не существует</p>
+								<p id="em1" style="color: red;"></p>
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="password" class="form-control" name="pass" placeholder="Пароль" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
-								<p id="ps1" style="color: red;" hidden>Неправильный пароль!</p>
+								<p id="ps1" style="color: red;"></p>
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="button button-login w-100">Log In</button>
@@ -54,6 +54,8 @@
 
 	<script>
 		async function sendForm(form) {
+			ps1.innerText =``;
+			em1.innerText =``;
 			let formData = new FormData(form);
 			let responce = await fetch("authUser", {
 				method: "POST",
@@ -62,10 +64,10 @@
 			let res = await responce.json();
 			if (res.result == "entered") {
 				location.href = "users";
-			} else if (res.result == wrpass) {
-				ps1.hidden = false;
-			} else if (res.result == wremail) {
-				em1.hidden = false;
+			} else if (res.result == "wrpass") {
+				ps1.innerHTML =`Неправильный пароль!`;
+			} else {
+				em1.innerHTML =`Такого пользователя не существует`;
 			}
 	}
 	</script>
