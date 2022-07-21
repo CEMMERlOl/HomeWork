@@ -10,12 +10,12 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-3">
-                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <button class="nav-link" id="profileTab" data-toggle="pill" data-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</button>
-                <button class="nav-link" id="messagesTab" data-toggle="pill" data-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
-                <button class="nav-link" id="settingsTab" data-toggle="pill" data-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
-                </div>
+              <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link"	id="profileTab"	data-toggle="pill" href="#v-pills-profile" role="tab"	aria-controls="v-pills-profile"	aria-selected="false">Профиль</a>
+                <a class="nav-link" id="messagesTab" data-toggle="pill" href="#v-pills-messages" role="tab"	aria-controls="v-pills-messages" aria-selected="false">Сообщения</a>
+                <a class="nav-link"	id="settingsTab" data-toggle="pill"	href="#v-pills-settings" role="tab"	aria-controls="v-pills-settings" aria-selected="false">Настройки</a>
             </div>
+          </div>
             <div class="col-9">
                 <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="profileTab">
@@ -121,15 +121,14 @@
         $("#v-pills-messages").tab("show");
       } else if (pathname == "settings") {
         $("#v-pills-settings").tab("show");
-      } //else {
-      //   location.href = location.protocol + "//" + location.host;
-      // }
+      } else {
+      location.href = location.protocol + "//" + location.host;
+      }
       document.getElementById(pathname + "Tab").classList.add("active");
       let navLinks = document.querySelectorAll(".nav-link");
       for (let i = 0; i < navLinks.length; i++) {
         navLinks[i].addEventListener("click", () => {
           let page = navLinks[i].getAttribute("aria-controls").split("v-pills-")[1];
-          //console.log(page);
           history.pushState("", "", page);
         });
       }
